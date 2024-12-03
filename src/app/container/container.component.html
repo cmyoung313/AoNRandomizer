@@ -1,0 +1,47 @@
+
+<div class="space-y-8">
+  <div class="flex flex-row justify-center items-center pt-8">
+      <h1 class="text-3xl font-bold underline">Pathfinder 2E Randomizer</h1>
+  </div>
+  <div class="grid grid-cols-2 gap-4 p-5">
+    <div class = "leftHalf border-r  pl-5">
+        <div class="grid grid-cols-4 gap-4">
+          <div>
+            <h3 class="text-3x1 font-bold">Number of Generators:</h3>
+          </div>
+          <div>
+            <mat-form-field class="example-full-width" [style.width.px]='75'>
+              <input type="number" matInput [formControl] ="generatorsControl" [style.width.px]='50' >
+            </mat-form-field>
+          </div>
+          <div>
+            <h3 class="text-3x1 font-bold">Get Whole List?</h3>
+            <input type="checkbox" [(ngModel)]="getWholeList">
+          </div>
+        </div>
+        <div class="divide-y divide-solid">
+          @for(number of [].constructor(generatorsControl.value); track $index)
+          {
+            <!-- ToDo: Get the nested form to work so we 
+              can use the index to uniquely name them-->
+            <div>
+                <app-randomizer  [traitList]="traitList"></app-randomizer>
+            </div>
+          }
+        </div>
+        <div class="flex flex-row justify-center items-center">
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" (click)="generateThatShit()">
+              Generate!
+            </button>
+        </div>
+    </div>
+    <div class = "rightHalf pl-5">
+      <div class=" flex flex-row justify-center items-center" >
+        @for(val of resVal; track val) {
+          <div>{{val}}</div>
+          <br />
+        }
+      </div>
+    </div>
+  </div>
+</div>
